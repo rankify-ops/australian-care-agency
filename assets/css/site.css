@@ -172,6 +172,16 @@ p { margin: 0 0 18px; }
   padding: 4px 8px;
 }
 
+/* ---------- Floating referral button ---------- */
+.floating-referral {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 200;
+  box-shadow: 0 12px 30px rgba(29,33,48,0.35);
+}
+.floating-referral:hover { box-shadow: 0 16px 34px rgba(253,102,196,0.4); }
+
 /* ---------- Hero ---------- */
 .hero {
   background: var(--color-dark) url("../images/bg-hero.png") center/cover no-repeat;
@@ -484,5 +494,6 @@ section { padding: 70px 0; }
   .stat-blocks { grid-template-columns: 1fr; }
   h1 { font-size: 32px; }
   .hero h1 { font-size: 28px; }
-  .btn { padding: 13px 22px 13px 30px; font-size: 15px; }
+  .btn { padding: 13px 22px; font-size: 15px; }
+  .floating-referral { right: 16px; bottom: 16px; padding: 12px 20px; font-size: 14px; }
 }
