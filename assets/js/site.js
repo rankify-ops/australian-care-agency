@@ -29,8 +29,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var contactForm = document.querySelector(".contact-form");
   if (contactForm) {
+    var messageEl = contactForm.querySelector(".form-message");
+    var submitBtn = contactForm.querySelector("button[type=submit]");
+    var submitLabel = submitBtn ? submitBtn.textContent : "";
+
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
+
+      if (messageEl) {
+        messageEl.textContent = "";
+        messageEl.classList.remove("success", "error");
+      }
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+      }
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(contactForm)
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (messageEl) {
+            if (data.success) {
+              messageEl.textContent = "Thanks! Your message has been sent — we'll be in touch soon.";
+              messageEl.classList.add("success");
+              contactForm.reset();
+            } else {
+              messageEl.textContent = "Something went wrong sending your message. Please call us on 0411 426 496 instead.";
+              messageEl.classList.add("error");
+            }
+          }
+        })
+        .catch(function () {
+          if (messageEl) {
+            messageEl.textContent = "Something went wrong sending your message. Please call us on 0411 426 496 instead.";
+            messageEl.classList.add("error");
+          }
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitLabel;
+          }
+        });
     });
   }
 });

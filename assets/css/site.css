@@ -367,7 +367,7 @@ section { padding: 70px 0; }
 }
 .gallery-item:hover .gallery-caption { opacity: 1; }
 
-/* ---------- Forms (visual only) ---------- */
+/* ---------- Forms ---------- */
 .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .contact-form .full { grid-column: 1 / -1; }
 .contact-form label { display: block; font-size: 16px; color: var(--color-gray); margin-bottom: 6px; }
@@ -384,6 +384,11 @@ section { padding: 70px 0; }
 .contact-form textarea { min-height: 140px; resize: vertical; }
 .contact-form input:focus, .contact-form textarea:focus { outline: 3px solid var(--color-blue); outline-offset: 1px; }
 .contact-form button { justify-self: start; }
+.contact-form button:disabled { opacity: 0.7; cursor: not-allowed; }
+.contact-form .form-message { flex-basis: 100%; margin: 14px 0 0; font-weight: 600; }
+.contact-form .form-message.success { color: #1F8A4C; }
+.contact-form .form-message.error { color: #C0392B; }
+.contact-form .full:has(.form-message) { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 
 /* ---------- Footer ---------- */
 .site-footer {
